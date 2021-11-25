@@ -18,7 +18,7 @@ public final class ConectaDb {
      String sdriver = "com.mysql.cj.jdbc.Driver";
      String url = "jdbc:mysql://localhost:3306/bdcmsa";
      String user = "root";
-     String pass = "Admin1234";
+     String pass = "";
         
         Connection cn = null;
 
