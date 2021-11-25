@@ -1,0 +1,133 @@
+html {
+  height: 100%;
+  background: #F2E1AC;
+  position: relative;
+}
+
+#logo {
+  position: absolute;
+  top: 50%;
+  margin-top: -100px;
+  left: 50%;
+  margin-left: -150px;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+  width: 300px;
+  height: 200px;
+}
+#logo .c1, #logo .c2 {
+  position: absolute;
+  top: 0;
+  height: 200px;
+  width: 200px;
+  -moz-border-radius: 100px;
+  -webkit-border-radius: 100px;
+  border-radius: 100px;
+  content: "";
+}
+#logo .c1 {
+  left: 0;
+  background: rgba(99, 166, 159, 0.5);
+}
+#logo .c2 {
+  right: 0;
+  background: rgba(242, 89, 75, 0.5);
+}
+#logo .A, #logo .A, #logo .A:before, #logo .A:after {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.75);
+}
+#logo .A {
+  left: 50%;
+  margin-left: -110px;
+  margin-top: -60px;
+  height: 120px;
+  width: 100px;
+  -moz-border-radius: 20px 60px 60px 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px 60px 60px 20px;
+}
+#logo .A {
+  right: 50%;
+  margin-right: -110px;
+  margin-top: -15px;
+  height: 30px;
+  width: 100px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+}
+#logo .A:before, #logo .A:after {
+  margin-top: -60px;
+  width: 30px;
+  height: 120px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  content: "";
+}
+#logo .A:before {
+  left: 0;
+}
+#logo .A:after {
+  right: 0;
+}
+
+@keyframes left-circle {
+  0% {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    left: 100%;
+  }
+  100% {
+    filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+    opacity: 1;
+    left: 0;
+  }
+}
+@keyframes right-circle {
+  0% {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    right: 100%;
+  }
+  100% {
+    filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+    opacity: 1;
+    right: 0;
+  }
+}
+@keyframes letters {
+  0% {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+  }
+  50% {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+  }
+  100% {
+    filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+    opacity: 1;
+  }
+}
+#logo .c1, #logo .c2 {
+  animation-duration: 2s;
+  animation-timing-function: ease;
+}
+#logo .c1 {
+  animation-name: left-circle;
+}
+#logo .c2 {
+  animation-name: right-circle;
+}
+#logo .S, #logo .A {
+  animation-name: letters;
+  animation-duration: 2s;
+  animation-timing-function: ease;
+}

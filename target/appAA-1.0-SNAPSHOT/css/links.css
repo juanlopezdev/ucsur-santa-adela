@@ -1,0 +1,25 @@
+/* para menús */
+.menu a{
+    
+    color: #444;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    border: solid #fff 2px;
+    margin: 2px;
+}
+
+.menu a:hover{
+    color: #FFF;
+    background-color:#0066CC;
+    padding: 15px;
+    font-weight:bold;
+    border: solid #fff 2px;
+}
+
+.menu a:active, .menu a:link, .menu a:visited {
+     font-weight:bold;
+    
+}
+

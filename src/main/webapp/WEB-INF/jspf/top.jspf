@@ -1,0 +1,21 @@
+<%-- archivo que va en la cabecera de pagina --%>
+
+<div class="anchomargen">
+    <table border="0" style="width:100%">
+        <tr>
+            <th style="font-size:1.4em">
+                Model View Controller -
+                Autenticación y Autorización
+            </th>
+        </tr>
+        <tr>
+            <td style="text-align:right">
+                <a href="/appAA/view/telefonos/telefonosQRY.jsp"
+                   target="_blank">Teléfonos</a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="/appAA/view/correos/correosQRY.jsp"
+                   target="_blank">Correos</a>
+            </td>
+        </tr>
+    </table>
+</div>

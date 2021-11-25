@@ -1,0 +1,12 @@
+<%-- archivo que va en la cabecera de pagina --%>
+
+<div class="anchomargen">
+    <table border="0" style="width:100%">
+        <tr>
+            <th style="font-size:1.4em">
+                Model View Controller -
+                Autenticación y Autorización
+            </th>
+        </tr>
+    </table>
+</div>

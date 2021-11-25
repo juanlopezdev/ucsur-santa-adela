@@ -1,0 +1,15 @@
+<%-- mensaje del proyecto --%>
+
+<div class="anchomargen">
+    <dl>
+        <dt style="font-weight:bold"></dt>
+        <!--<<dd>* Ver sus datos.</dd>
+        <dd>* Modificar sus datos (menos autorizaci&oacute;n)
+        <dd>* Modificar sus datos (menos autorización).</dd>
+        <dt style="font-weight:bold">ADMIN</dt>
+        <dd>* Crear nuevos usuarios.</dd>
+        <dd>* Retirar usuarios.</dd>
+        <dd>* Ver y modificar sus datos.</dd>
+        <dd>* Cambiar autorización de usuarios</dd>>-->
+    </dl>
+</div>
