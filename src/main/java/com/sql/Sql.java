@@ -68,6 +68,8 @@ public final class Sql {
                 cn.close();
             }
         } catch (SQLException e) {
+              System.out.println("LOGIN XD");
+              System.out.println(e);
             list = null;
         }
 
