@@ -9,7 +9,6 @@
         <servlet-name>Logout</servlet-name>
         <servlet-class>controller.servlet.ServletLogout</servlet-class>
     </servlet>
-
     <servlet>
         <servlet-name>Usuario</servlet-name>
         <servlet-class>controller.servlet.ServletUsuario</servlet-class>
@@ -18,6 +17,11 @@
         <servlet-name>Cliente</servlet-name>
         <servlet-class>controller.servlet.ServletCliente</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Cotizacion</servlet-name>
+        <servlet-class>controller.servlet.ServletCotizacion</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -34,6 +38,10 @@
     <servlet-mapping>
         <servlet-name>Cliente</servlet-name>
         <url-pattern>/Cliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Cotizacion</servlet-name>
+        <url-pattern>/Cotizacion</url-pattern>
     </servlet-mapping>
 
 

@@ -8,7 +8,7 @@ public class BeanUsuario {
     private String login;
     private String password;
     private String autorizacion;
-
+    
     public String getApellidos() {
         return apellidos;
     }
