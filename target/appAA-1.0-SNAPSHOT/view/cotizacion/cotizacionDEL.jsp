@@ -85,19 +85,19 @@
               <tr>
                 <td>Subtotal</td>
                 <td>
-                  <input type="number" value="<%=fila[6].toString()%>" readonly>
+                  <input type="number" value="<%=fila[6].toString()%>" step="0.01" readonly>
                 </td>
               </tr>
               <tr>
                 <td>IGV</td>
                 <td>
-                  <input type="number" value="<%=fila[7].toString()%>" readonly>
+                  <input type="number" value="<%=fila[7].toString()%>" step="0.01" readonly>
                 </td>
               </tr>
               <tr>
                 <td>Total</td>
                 <td>
-                  <input type="number" value="<%=fila[8].toString()%>" readonly>
+                  <input type="number" value="<%=fila[8].toString()%>" step="0.01" readonly>
                 </td>
               </tr>
               <tr>

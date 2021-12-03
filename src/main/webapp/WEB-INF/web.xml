@@ -21,6 +21,10 @@
         <servlet-name>Cotizacion</servlet-name>
         <servlet-class>controller.servlet.ServletCotizacion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CotizacionDetalle</servlet-name>
+        <servlet-class>controller.servlet.ServletCotizacionDetalle</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -42,6 +46,10 @@
     <servlet-mapping>
         <servlet-name>Cotizacion</servlet-name>
         <url-pattern>/Cotizacion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CotizacionDetalle</servlet-name>
+        <url-pattern>/CotizacionDetalle</url-pattern>
     </servlet-mapping>
 
 

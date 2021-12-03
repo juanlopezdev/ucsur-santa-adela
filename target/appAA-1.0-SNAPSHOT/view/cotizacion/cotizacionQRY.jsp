@@ -69,7 +69,7 @@
                         + "<td class='center'><b>Total</b></td>"
                         + "<td class='center'><b>Estado Cotizacion</b></td>"
                         + "<td class='center'><b>Editar</b></td>"
-                        + "<td class='center'><b>Agregar producto</b></td>"
+                        + "<td class='center'><b>Detalle</b></td>"
                         + "<td class='center'><b>Eliminar</b></td>");
               } else {
                 // Imprimir datos
@@ -82,7 +82,7 @@
                         + " </a>"
                         + "</td>");
                 out.print("<td class='center'>"
-                        + " <a href='cotizacionUPD.jsp?cod_cotizacion=" + fila[0] + "'>"
+                        + " <a href='../cotizacion-detalle/cotizacionDetalleQRY.jsp?cod_cotizacion=" + fila[0] + "'>"
                         + "  <img src='../../images/ins.gif' border='0'>"
                         + " </a>"
                         + "</td>");

@@ -29,8 +29,12 @@ public class DaoCotizacion {
   }
 
   public static String delete(BeanCotizacion bp) {
-    String sql = "DELETE FROM bdcmsa.cotizacion WHERE cod_cotizacion  = " + bp.getCodCotizacion();
-    return Sql.ejecuta(sql);
+    // Eliminar detalle asociado a la cotización
+    String sql1 = "DELETE FROM bdcmsa.cotizacion_detalle WHERE cod_cotizacion  = " + bp.getCodCotizacion();
+    Sql.ejecuta(sql1);
+    // Eliminar cotizacion
+    String sql2 = "DELETE FROM bdcmsa.cotizacion WHERE cod_cotizacion  = " + bp.getCodCotizacion();
+    return Sql.ejecuta(sql2);
   }
 
   public static String update(BeanCotizacion bp) {

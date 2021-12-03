@@ -97,21 +97,21 @@
               <tr>
                 <td>Subtotal</td>
                 <td>
-                  <input type="number" name="subtotal" min="0" value="<%=fila[4].toString()%>">
+                  <input type="number" name="subtotal" min="0" value="<%=fila[4].toString()%>" step="0.01">
                 </td>
               </tr>
 
               <tr>
                 <td>IGV</td>
                 <td>
-                  <input type="number" name="igv" min="0" value="<%=fila[5].toString()%>">
+                  <input type="number" name="igv" min="0" value="<%=fila[5].toString()%>" step="0.01">
                 </td>
               </tr>
 
               <tr>
                 <td>Total</td>
                 <td>
-                  <input type="number" name="total" min="0" value="<%=fila[6].toString()%>">
+                  <input type="number" name="total" min="0" value="<%=fila[6].toString()%>" step="0.01">
                 </td>
               </tr>
 

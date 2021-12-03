@@ -28,66 +28,64 @@
         </div> 
         <%--<%@ include file="../../WEB-INF/jspf/top2.jspf" %> --%>
       </div>
-
+      <%
+        String codigo = request.getParameter("cod_cotizacion");
+      %>
       <div id="contentwrapper">
-        <a href="cotizacionINS.jsp">Nueva Cotización</a>
+        <a href="cotizacionDetalleINS.jsp?cod_cotizacion=<%=codigo%>">Agregar</a>
         <br>
-        <h3 class="center">Lista de Cotizaciones</h3>
+        <h3 class="center">Detalle cotización</h3>
         <%-- lista de cotizaciones (inicio) --%>
         <%
-          List lstCotizacion = Sql.consulta(
+          List lstCotizacionDetalle = Sql.consulta(
                   "SELECT "
-                  + " cotizacion.cod_cotizacion,"
-                  + " cliente.razon_social,"
-                  + " CONCAT(usuarios.nombres, ' ', usuarios.apellidos) as usuario,"
-                  + " cotizacion.fecha_cotizacion,"
-                  + " cotizacion.subtotal,"
-                  + " cotizacion.igv,"
-                  + " cotizacion.total,"
-                  + " cotizacion.estado_cotizacion"
-                  + " FROM cotizacion "
-                  + " INNER JOIN cliente"
-                  + " ON cliente.cod_cliente = cotizacion.cod_cliente"
-                  + " INNER JOIN usuarios"
-                  + " ON usuarios.idUsuario = cotizacion.idUsuario"
+                  + " cotizacion_detalle.cod_cotizacion,"
+                  + " cotizacion_detalle.cod_tarifario,"
+                  + " cotizacion_detalle.nroitem,"
+                  + " tarifario.servicio,"
+                  + " tarifario.descripcion,"
+                  + " tarifario.precio,"
+                  + " cotizacion_detalle.cantidad,"
+                  + " cotizacion_detalle.subtotal,"
+                  + " cotizacion_detalle.igv,"
+                  + " cotizacion_detalle.total"
+                  + " FROM cotizacion_detalle "
+                  + " INNER JOIN tarifario"
+                  + " ON tarifario.cod_tarifario = cotizacion_detalle.cod_tarifario"
+                  + " WHERE cotizacion_detalle.cod_cotizacion = " + codigo
           );
 
-          if (lstCotizacion != null) {
+          if (lstCotizacionDetalle != null) {
             out.print("<div class='center'>");
             out.print("<table style='width:100%;margin:auto' border='10'>");
 
-            for (int fil = 0; fil < lstCotizacion.size(); ++fil) {
-              Object[] fila = (Object[]) lstCotizacion.get(fil);
+            for (int fil = 0; fil < lstCotizacionDetalle.size(); ++fil) {
+              Object[] fila = (Object[]) lstCotizacionDetalle.get(fil);
               out.print("<tr>");
               if (fil == 0) {
                 // Imprimir cabecera
-                out.print("<td class='center'><b>Cliente</b></td>"
-                        + "<td class='center'><b>Usuario</b></td>"
-                        + "<td class='center'><b>Fecha Cotización</b></td>"
+                out.print("<td class='center'><b>#</b></td>"
+                        + "<td class='center'><b>Servicio</b></td>"
+                        + "<td class='center'><b>Descripción</b></td>"
+                        + "<td class='center'><b>Precio Unit.</b></td>"
+                        + "<td class='center'><b>Cantidad</b></td>"
                         + "<td class='center'><b>Subtotal</b></td>"
                         + "<td class='center'><b>Igv</b></td>"
                         + "<td class='center'><b>Total</b></td>"
-                        + "<td class='center'><b>Estado Cotizacion</b></td>"
                         + "<td class='center'><b>Editar</b></td>"
-                        + "<td class='center'><b>Agregar producto</b></td>"
                         + "<td class='center'><b>Eliminar</b></td>");
               } else {
                 // Imprimir datos
-                for (int col = 1; col < fila.length; ++col) {
+                for (int col = 2; col < fila.length; ++col) {
                   out.print("<td>" + fila[col] + "</td>");
                 }
                 out.print("<td class='center'>"
-                        + " <a href='cotizacionUPD.jsp?cod_cotizacion=" + fila[0] + "'>"
+                        + " <a href='cotizacionDetalleUPD.jsp?cod_cotizacion=" + fila[0] + "&cod_tarifario=" + fila[1] + "'>"
                         + "  <img src='../../images/aut.gif' border='0'>"
                         + " </a>"
                         + "</td>");
                 out.print("<td class='center'>"
-                        + " <a href='cotizacionUPD.jsp?cod_cotizacion=" + fila[0] + "'>"
-                        + "  <img src='../../images/ins.gif' border='0'>"
-                        + " </a>"
-                        + "</td>");
-                out.print("<td class='center'>"
-                        + " <a href='cotizacionDEL.jsp?cod_cotizacion=" + fila[0] + "'>"
+                        + " <a href='cotizacionDetalleDEL.jsp?cod_cotizacion=" + fila[0] + "&cod_tarifario=" + fila[1] + "'>"
                         + "  <img src='../../images/del.gif' border='0'>"
                         + " </a>"
                         + "</td>");
@@ -97,7 +95,7 @@
             out.print("</table>");
             out.print("</div>");
           } else {
-            session.setAttribute("msg", "No hay acceso a Cotizaciones");
+            session.setAttribute("msg", "No hay servicios/productos asociados a esta cotización");
             response.sendRedirect("../../mensaje.jsp");
           }
         %>
@@ -105,6 +103,8 @@
 
         <p style="text-align:center;">
           <a href="../principal/principal.jsp">Principal</a>
+          &nbsp;&nbsp;&nbsp;
+          <a href="../cotizacion/cotizacionQRY.jsp">Volver</a>
         </p>
       </div>
 

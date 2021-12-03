@@ -41,7 +41,7 @@ public class ServletCotizacionDetalle extends HttpServlet {
       msg = DaoCotizacionDetalle.insert(bp);
 
       if (msg == null) {  // INS, DEL, UPD correctos
-        response.sendRedirect("view/cotizacion-detalle/cotizacionDetalleQRY.jsp");
+        response.sendRedirect("view/cotizacion-detalle/cotizacionDetalleQRY.jsp?cod_cotizacion=" + codCotizacion);
       } else {
         request.getSession().setAttribute("msg", msg);
         response.sendRedirect("mensaje.jsp");
@@ -55,7 +55,7 @@ public class ServletCotizacionDetalle extends HttpServlet {
       bp.setCodTarifario(codTarifario);
       msg = DaoCotizacionDetalle.delete(bp);
       if (msg == null) {  // INS, DEL, UPD correctos
-        response.sendRedirect("view/cotizacion-detalle/cotizacionDetalleQRY.jsp");
+        response.sendRedirect("view/cotizacion-detalle/cotizacionDetalleQRY.jsp?cod_cotizacion=" + codCotizacion);
       } else {
         msg = "Error... no se Borro registro!";
         request.getSession().setAttribute("msg", msg);
@@ -82,7 +82,7 @@ public class ServletCotizacionDetalle extends HttpServlet {
       msg = DaoCotizacionDetalle.update(bp);
 
       if (msg == null) {  // INS, DEL, UPD correctos   
-        response.sendRedirect("view/cotizacion-detalle/cotizacionDetalleQRY.jsp");
+        response.sendRedirect("view/cotizacion-detalle/cotizacionDetalleQRY.jsp?cod_cotizacion=" + codCotizacion);
       } else {
         msg = "Error... no se Actualizo registro!";
         request.getSession().setAttribute("msg", msg);

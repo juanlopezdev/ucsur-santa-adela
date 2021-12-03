@@ -5,10 +5,13 @@ controller\dao\DaoUsuario.class
 controller\servlet\ServletLogin.class
 model\BeanUsuario.class
 controller\dao\DaoCliente.class
+controller\servlet\ServletCotizacionDetalle.class
 model\BeanCotizacion.class
 controller\servlet\ServletLogout.class
+controller\dao\DaoCotizacionDetalle.class
 model\BeanCliente.class
 controller\servlet\ServletCliente.class
+model\BeanCotizacionDetalle.class
 com\Combo.class
 controller\dao\DaoCotizacion.class
 com\sql\Sql.class

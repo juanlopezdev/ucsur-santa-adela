@@ -1,4 +1,5 @@
 C:\Users\juanl\Documents\Proyectos\ucsur\santaadela\src\main\java\com\sql\ConectaDb.java
+C:\Users\juanl\Documents\Proyectos\ucsur\santaadela\src\main\java\controller\servlet\ServletCotizacionDetalle.java
 C:\Users\juanl\Documents\Proyectos\ucsur\santaadela\src\main\java\com\Combo.java
 C:\Users\juanl\Documents\Proyectos\ucsur\santaadela\src\main\java\controller\servlet\ServletCotizacion.java
 C:\Users\juanl\Documents\Proyectos\ucsur\santaadela\src\main\java\controller\servlet\ServletLogout.java
@@ -7,7 +8,9 @@ C:\Users\juanl\Documents\Proyectos\ucsur\santaadela\src\main\java\controller\ser
 C:\Users\juanl\Documents\Proyectos\ucsur\santaadela\src\main\java\controller\dao\DaoUsuario.java
 C:\Users\juanl\Documents\Proyectos\ucsur\santaadela\src\main\java\controller\servlet\ServletUsuario.java
 C:\Users\juanl\Documents\Proyectos\ucsur\santaadela\src\main\java\model\BeanCliente.java
+C:\Users\juanl\Documents\Proyectos\ucsur\santaadela\src\main\java\controller\dao\DaoCotizacionDetalle.java
 C:\Users\juanl\Documents\Proyectos\ucsur\santaadela\src\main\java\model\BeanUsuario.java
+C:\Users\juanl\Documents\Proyectos\ucsur\santaadela\src\main\java\model\BeanCotizacionDetalle.java
 C:\Users\juanl\Documents\Proyectos\ucsur\santaadela\src\main\java\model\BeanCotizacion.java
 C:\Users\juanl\Documents\Proyectos\ucsur\santaadela\src\main\java\controller\dao\DaoCliente.java
 C:\Users\juanl\Documents\Proyectos\ucsur\santaadela\src\main\java\com\sql\Sql.java

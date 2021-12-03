@@ -81,21 +81,21 @@
               <tr>
                 <td>Subtotal</td>
                 <td>
-                  <input type="number" name="subtotal" min="0">
+                  <input type="number" name="subtotal" min="0" step="0.01">
                 </td>
               </tr>
 
               <tr>
                 <td>IGV</td>
                 <td>
-                  <input type="number" name="igv" min="0">
+                  <input type="number" name="igv" min="0" step="0.01">
                 </td>
               </tr>
 
               <tr>
                 <td>Total</td>
                 <td>
-                  <input type="number" name="total" min="0">
+                  <input type="number" name="total" min="0" step="0.01">
                 </td>
               </tr>
 
