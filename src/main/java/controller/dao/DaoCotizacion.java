@@ -20,7 +20,7 @@ public class DaoCotizacion {
             + "" + bp.getCodCotizacion() + ", "
             + "" + bp.getCodCliente() + ", "
             + "" + bp.getIdUsuario() + ", "
-            + "" + bp.getFechaCotizacion() + ", "
+            + "'" + bp.getFechaCotizacion() + "', "
             + "" + bp.getSubtotal() + ", "
             + "" + bp.getIgv() + ", "
             + "" + bp.getTotal() + ", "

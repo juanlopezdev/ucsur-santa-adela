@@ -38,48 +38,82 @@
 
         <%-- Pantalla muestra nombres del usuario a Retirar (inicio) --%>
         <%
-          String codigo = request.getParameter("cod_cliente");
-          Object[] fila = Sql.getFila("SELECT"
-                  + "cod_cliente,"
-                  + "ruc,"
-                  + "razon_social "
-                  + "FROM bdcmsa.cliente WHERE cod_cliente = " + codigo);
+          String codigo = request.getParameter("cod_cotizacion");
+          Object[] fila = Sql.getFila(
+                  "SELECT "
+                  + " cotizacion.cod_cotizacion,"
+                  + " cotizacion.cod_cliente,"
+                  + " cliente.razon_social,"
+                  + " usuarios.idUsuario,"
+                  + " CONCAT(usuarios.nombres, ' ', usuarios.apellidos) as usuario,"
+                  + " cotizacion.fecha_cotizacion,"
+                  + " cotizacion.subtotal,"
+                  + " cotizacion.igv,"
+                  + " cotizacion.total,"
+                  + " cotizacion.estado_cotizacion"
+                  + " FROM cotizacion "
+                  + " INNER JOIN cliente"
+                  + " ON cliente.cod_cliente = cotizacion.cod_cliente"
+                  + " INNER JOIN usuarios"
+                  + " WHERE cod_cotizacion = " + codigo);
         %>
-        <form action="../../Cliente" method="post">
-          <input type="hidden" name="accion" value="DEL">
-          <input type="hidden" name="cod_cliente" value="<%=codigo%>">
-          <div class="center">
-            <table style="text-align:left;border:0;">
+        <div class="center">
+          <form action="../../Cotizacion" method="post">
+            <input type="hidden" name="accion" value="DEL">
+            <input type="hidden" name="codigo" value="<%=codigo%>">
+            <input type="hidden" name="cod_cliente" value="<%=fila[1].toString()%>">
+            <input type="hidden" name="idUsuario" value="<%=fila[3].toString()%>">
+            <table style="margin:auto;text-align:left">
               <tr>
-                <td>Codigo</td>
+                <td>Cliente</td>
                 <td>
-                  <input type="text" name="codigo" value="<%=fila[0].toString()%>"
-                         size="10" maxlength="10" readonly>
+                  <input type="text" value="<%=fila[2].toString()%>" readonly>
                 </td>
               </tr>
               <tr>
-                <td>RUC</td>
+                <td>Usuario</td>
                 <td>
-                  <input type="text" name="RUC" value="<%=fila[1].toString()%>"
-                         size="11" maxlength="11" readonly>
+                  <input type="text" value="<%=fila[4].toString()%>" readonly>
                 </td>
               </tr>
               <tr>
-                <td>Razon Social</td>
+                <td>Fecha de Cotización</td>
                 <td>
-                  <input type="text" name="razonsocial" value="<%=fila[2].toString()%>"
-                         size="50" maxlength="50" readonly>
+                  <input type="date" value="<%=fila[5].toString()%>" readonly>
+                </td>
+              </tr>
+              <tr>
+                <td>Subtotal</td>
+                <td>
+                  <input type="number" value="<%=fila[6].toString()%>" readonly>
+                </td>
+              </tr>
+              <tr>
+                <td>IGV</td>
+                <td>
+                  <input type="number" value="<%=fila[7].toString()%>" readonly>
+                </td>
+              </tr>
+              <tr>
+                <td>Total</td>
+                <td>
+                  <input type="number" value="<%=fila[8].toString()%>" readonly>
+                </td>
+              </tr>
+              <tr>
+                <td>Estado cotización</td>
+                <td>
+                  <input type="text" value="<%=fila[9].toString()%>" readonly>
                 </td>
               </tr>
               <tr>
                 <td class="center" colspan="2">
-                  <input type="submit" value="Retirar a este Cliente">
+                  <input type="submit" value="Retirar esta cotización">
                 </td>
               </tr>
             </table>
-          </div>
-        </form>
-
+          </form>
+        </div>
         <%
           } else {  // bloque de seguridad (fin)
             session.setAttribute("msg", "Ingreso incorrecto");
@@ -90,7 +124,7 @@
         <p class="center">
           <a href="../../Logout">Terminar Sesi&oacute;n</a>
           &nbsp;&nbsp;&nbsp;
-          <a href="clienteQRY.jsp">Volver</a>
+          <a href="cotizacionQRY.jsp">Volver</a>
         </p>
       </div>
 

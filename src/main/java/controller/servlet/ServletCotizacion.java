@@ -61,7 +61,7 @@ public class ServletCotizacion extends HttpServlet {
       }
 
     } else if (accion.compareTo("UPD") == 0) {
-      int codCotizacion = Integer.parseInt(request.getParameter("cod_cotizacion"));
+      int codCotizacion = Integer.parseInt(request.getParameter("codigo"));
       int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
       int codCliente = Integer.parseInt(request.getParameter("cod_cliente"));
       String fechaCotizacion = request.getParameter("fecha_cotizacion");

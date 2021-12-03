@@ -1,8 +1,7 @@
-<%@page import="controller.dao.DaoCliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@page import="model.BeanUsuario" %>
-<%@page import="model.BeanCliente" %>
+<%@page import="model.BeanCotizacion" %>
 <%@page import="com.sql.Sql" %>
 <%@page import="java.util.List" %>
 <html>
@@ -39,151 +38,103 @@
           <%=usuario.getApellidos()%>
         </h4>
 
+        <%-- Pantalla para actualizar Cotización (inicio) --%>
         <%
-          String codigo = request.getParameter("cod_cliente");
+          String codigo = request.getParameter("cod_cotizacion");
           Object[] fila = Sql.getFila(
-                  "select cod_cliente, razon_social, ruc, direccion, zona, giro, tipo_cuenta,estado "
-                  + "from bdcmsa.cliente WHERE cod_cliente=" + codigo);
+                  "SELECT "
+                  + " cod_cotizacion,"
+                  + " cod_cliente,"
+                  + " idUsuario,"
+                  + " fecha_cotizacion,"
+                  + " subtotal,"
+                  + " igv,"
+                  + " total,"
+                  + " estado_cotizacion"
+                  + " FROM cotizacion"
+                  + " WHERE cod_cotizacion=" + codigo);
         %>
 
-        <h3 class="center">Editar Cliente</h3>
+        <h3 class="center">Editar Cotización</h3>
         <div class="center">
-          <form action="../../Cliente" method="post">
+          <form action="../../Cotizacion" method="post">
             <input type="hidden" name="accion" value="UPD">
             <input type="hidden" name="codigo" value="<%=fila[0].toString()%>">
-            <p class="center">
-            <table style="text-align:left;border:0;">
+            <input type="hidden" name="idUsuario" value="<%=fila[2].toString()%>">
+            <table style="margin:auto;text-align:left">
               <tr>
-                <td>Razon Social</td>
+                <td>Cliente</td>
                 <td>
-                  <input type="text" name="razonsocial"
-                         value="<%=fila[1].toString()%>"
-                         size="50" maxlength="80" >
-                </td>
-              </tr>
-
-              <tr>
-                <td>RUC</td>
-                <td>
-                  <input type="text" name="RUC"
-                         value="<%=fila[2].toString()%>"
-                         size="50" maxlength="80" >
-                </td>
-              </tr>
-
-              <tr>
-                <td>Direccion</td>
-                <td>
-                  <input type="text" name="direccion"
-                         value="<%=fila[3].toString()%>"
-                         size="50" maxlength="80" >
-                </td>
-              </tr>
-
-              <tr>
-                <td>Zona</td>
-                <td>
-                  <select name="zona">
-                    <option value="LIMA SUR" <%= (fila[4].toString().compareTo("LIMA SUR") == 0) ? "selected" : "" %>>LIMA SUR</option>
-                    <option value="LIMA CENTRO" <%= (fila[4].toString().compareTo("LIMA CENTRO") == 0) ? "selected" : "" %>>LIMA CENTRO</option>
-                    <option value="LIMA ESTE" <%= (fila[4].toString().compareTo("LIMA ESTE") == 0) ? "selected" : "" %>>LIMA ESTE</option>
-                    <option value="LIMA NORTE" <%= (fila[4].toString().compareTo("LIMA NORTE") == 0) ? "selected" : "" %>>LIMA NORTE</option>
-                    <option value="CALLAO" <%= (fila[4].toString().compareTo("CALLAO") == 0) ? "selected" : "" %>>CALLAO</option>
-                    <option value="PROVINCIA" <%= (fila[4].toString().compareTo("PROVINCIA") == 0) ? "selected" : "" %>>PROVINCIA</option>
+                  <%
+                    List lstClientes = Sql.consulta(
+                            "SELECT "
+                            + " cod_cliente,"
+                            + " CONCAT(razon_social, ', RUC:', ruc) as cliente"
+                            + " FROM cliente "
+                    );
+                  %>
+                  <select name="cod_cliente" required>
+                    <%
+                      if (lstClientes != null) {
+                        for (int fil = 1; fil < lstClientes.size(); ++fil) {
+                          Object[] filaCliente = (Object[]) lstClientes.get(fil);
+                          String attrSelected = (filaCliente[0] == fila[1]) ? "selected" : "";
+                          out.print("<option value='" + filaCliente[0] + "' " + attrSelected + ">" + filaCliente[1] + "</option>");
+                        }
+                      }
+                    %>
                   </select>
                 </td>
               </tr>
 
               <tr>
-                <td>Giro</td>
+                <td>Fecha de Cotización</td>
                 <td>
-                  <select name="Giro">
-                    <%if (fila[5].toString().compareTo("MANUFACTURA") == 0) {%>
-                    <option value="MANUFACTURA" selected>MANUFACTURA</option>
-                    <option value="PESQUERIA">PESQUERIA</option>
-                    <option value="SERVICIOS">SERVICIOS</option>
-                    <option value="GAS">GAS</option>
-                    <option value="OTROS">OTROS</option>
-                    <%}%>
-                    <%if (fila[5].toString().compareTo("PESQUERIA") == 0) {%>
-                    <option value="MANUFACTURA">MANUFACTURA</option>
-                    <option value="PESQUERIA" selected>PESQUERIA</option>
-                    <option value="SERVICIOS">SERVICIOS</option>
-                    <option value="GAS">GAS</option>
-                    <option value="OTROS">OTROS</option>
-                    <%}%>
-                    <%if (fila[5].toString().compareTo("SERVICIOS") == 0) {%>
-                    <option value="MANUFACTURA">MANUFACTURA</option>
-                    <option value="PESQUERIA" >PESQUERIA</option>
-                    <option value="SERVICIOS" selected>SERVICIOS</option>
-                    <option value="GAS">GAS</option>
-                    <option value="OTROS">OTROS</option>
-                    <%}%>
-                    <%if (fila[5].toString().compareTo("GAS") == 0) {%>
-                    <option value="MANUFACTURA">MANUFACTURA</option>
-                    <option value="PESQUERIA" >PESQUERIA</option>
-                    <option value="SERVICIOS" >SERVICIOS</option>
-                    <option value="GAS" selected>GAS</option>
-                    <option value="OTROS">OTROS</option>
-                    <%}%>
-                    <%if (fila[5].toString().compareTo("OTROS") == 0) {%>
-                    <option value="MANUFACTURA">MANUFACTURA</option>
-                    <option value="PESQUERIA" >PESQUERIA</option>
-                    <option value="SERVICIOS" >SERVICIOS</option>
-                    <option value="GAS">GAS</option>
-                    <option value="OTROS"selected>OTROS</option>
-                    <%}%>
-
-                  </select>
+                  <input type="date" name="fecha_cotizacion" value="<%=fila[3].toString()%>">
                 </td>
-              </tr>    
-              <tr>
-                <td>Tipo_Cuenta</td>
-                <td>
-                  <select name="Tipo_Cuenta">
-                    <%if (fila[6].toString().compareTo("MICRO") == 0) {%>
-                    <option value="MICRO" selected>MICRO</option>
-                    <option value="MEDIANO">MEDIANO</option>
-                    <option value="GRANDE">GRANDE</option>
-                    <%}%>
-                    <%if (fila[6].toString().compareTo("MEDIANO") == 0) {%>
-                    <option value="MICRO" >MICRO</option>
-                    <option value="MEDIANO"selected>MEDIANO</option>
-                    <option value="GRANDE">GRANDE</option>
-                    <%}%>
-                    <%if (fila[6].toString().compareTo("GRANDE") == 0) {%>
-                    <option value="MICRO" >MICRO</option>
-                    <option value="MEDIANO">MEDIANO</option>
-                    <option value="GRANDE" selected>GRANDE</option>
-                    <%}%>
+              </tr>
 
+              <tr>
+                <td>Subtotal</td>
+                <td>
+                  <input type="number" name="subtotal" min="0" value="<%=fila[4].toString()%>">
+                </td>
+              </tr>
+
+              <tr>
+                <td>IGV</td>
+                <td>
+                  <input type="number" name="igv" min="0" value="<%=fila[5].toString()%>">
+                </td>
+              </tr>
+
+              <tr>
+                <td>Total</td>
+                <td>
+                  <input type="number" name="total" min="0" value="<%=fila[6].toString()%>">
+                </td>
+              </tr>
+
+              <tr>
+                <td>Estado Cotización</td>
+                <td>
+                  <select name="estado_cotizacion">
+                    <option value="PENDIENTE" <%= (fila[7].toString().compareTo("PENDIENTE") == 0) ? "selected" : ""%>>PENDIENTE</option>
+                    <option value="CERRADA" <%= (fila[7].toString().compareTo("CERRADA") == 0) ? "selected" : ""%>>CERRADA</option>
+                    <option value="RECHAZADA" <%= (fila[7].toString().compareTo("RECHAZADA") == 0) ? "selected" : ""%>>RECHAZADA</option>
                   </select>
                 </td>
               </tr>
-              <tr>
-                <td>Estado</td>
-                <td>
-                  <select name="Estado">
-                    <%if (fila[7].toString().compareTo("ACTIVO") == 0) {%>
-                    <option value="ACTIVO" selected>ACTIVO</option>
-                    <option value="NO ACTIVO">NO ACTIVO</option>
-                    <%}%>
-                    <%if (fila[7].toString().compareTo("NO ACTIVO") == 0) {%>
-                    <option value="ACTIVO" >ACTIVO</option>
-                    <option value="NO ACTIVO"selected>NO ACTIVO</option>
-                    <%}%>
-                  </select>
-                </td>
-              </tr> 
+
               <tr>
                 <td colspan="2" class="center">
-                  <input type="submit" value="Actualizar Cliente">
+                  <input type="submit" value="Actualizar Cotización">
                 </td>
               </tr>
             </table>
           </form>
         </div>
-        <%-- pantalla para nuevo Usuario (fin) --%>
+        <%-- Pantalla para actualizar Cotización (fin) --%>
 
         <%} else {  // bloque de seguridad (fin)
             session.setAttribute("msg", "No tiene usuario");
@@ -193,7 +144,7 @@
         <p class="center">
           <a href="../../Logout">Terminar Sesión</a>
           &nbsp;&nbsp;&nbsp;
-          <a href="clienteQRY.jsp">Volver</a>
+          <a href="cotizacionQRY.jsp">Volver</a>
         </p>
       </div>
 

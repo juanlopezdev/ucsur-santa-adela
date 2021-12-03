@@ -44,9 +44,9 @@
         <h3 class="center">Nueva Cotización</h3>
         <div class="center">
           <form action="../../Cotizacion" method="post">
+            <input type="hidden" name="accion" value="INS">
+            <input type="hidden" name="idUsuario" value="<%=usuario.getIdUsuario()%>">
             <table style="margin:auto;text-align:left">
-              <input type="hidden" name="accion" value="INS">
-              <input type="hidden" name="idUsuario" value="<%=usuario.getIdUsuario()%>">
               <tr>
                 <td>Cliente</td>
                 <td>
@@ -74,7 +74,7 @@
               <tr>
                 <td>Fecha de Cotización</td>
                 <td>
-                  <input type="date" name="fecha_cotizacion" size="50">
+                  <input type="date" name="fecha_cotizacion">
                 </td>
               </tr>
 
@@ -131,7 +131,7 @@
         <p class="center">
           <a href="../../Logout">Terminar Sesión</a>
           &nbsp;&nbsp;&nbsp;
-          <a href="clienteQRY.jsp">Volver</a>
+          <a href="cotizacionQRY.jsp">Volver</a>
         </p>
       </div>
 
