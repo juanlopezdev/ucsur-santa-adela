@@ -72,7 +72,7 @@
                       if (lstTarifario != null) {
                         for (int fil = 1; fil < lstTarifario.size(); ++fil) {
                           Object[] fila = (Object[]) lstTarifario.get(fil);
-                          out.print("<option value='" + fila[0] + "'>" + fila[1] + " - " + fila[2] + " / S/ " + fila[3] + "</option>");
+                          out.print("<option value='" + fila[0] + "' data-price='" + fila[3] + "'>" + fila[1] + " - " + fila[2] + " / S/ " + fila[3] + "</option>");
                         }
                       }
                     %>
@@ -138,5 +138,27 @@
       </div>
     </div>
 
+    <script>
+      let cboTarifario = document.querySelector('select[name="cod_tarifario"]');
+      let txtCantidad = document.querySelector('input[name="cantidad"]');
+      let txtSubtotal = document.querySelector('input[name="subtotal"]');
+      let txtIgv = document.querySelector('input[name="igv"]');
+      let txtTotal = document.querySelector('input[name="total"]');
+
+      cboTarifario.onchange = (evt) => calculate();
+
+      txtCantidad.onkeyup = (evt) => calculate();
+
+      function calculate() {
+        let cant = parseInt(txtCantidad.value);
+        let price = parseFloat(cboTarifario.options[cboTarifario.selectedIndex].dataset.price);
+        let subtotal = parseFloat(cant * price);
+        let igv = subtotal * 0.18;
+        let total = subtotal + igv;
+        txtSubtotal.value = subtotal.toFixed(2);
+        txtIgv.value = igv.toFixed(2);
+        txtTotal.value = total.toFixed(2);
+      }
+    </script>
   </body>
 </html>

@@ -68,6 +68,7 @@
             <input type="hidden" name="accion" value="UPD">
             <input type="hidden" name="cod_cotizacion" value="<%=codCotizacion%>">
             <input type="hidden" name="cod_tarifario" value="<%=codTarifario%>">
+            <input type="hidden" name="tarifario_price" value="<%=fila[5]%>">
             <table style="margin:auto;text-align:left">
               <tr>
                 <td>Nro.</td>
@@ -138,5 +139,25 @@
       </div>
     </div>
 
+    <script>
+      let hddTarifarioPrice = document.querySelector('input[name="tarifario_price"]');
+      let txtCantidad = document.querySelector('input[name="cantidad"]');
+      let txtSubtotal = document.querySelector('input[name="subtotal"]');
+      let txtIgv = document.querySelector('input[name="igv"]');
+      let txtTotal = document.querySelector('input[name="total"]');
+
+      txtCantidad.onkeyup = (evt) => calculate();
+
+      function calculate() {
+        let cant = parseInt(txtCantidad.value);
+        let price = parseFloat(hddTarifarioPrice.value);
+        let subtotal = parseFloat(cant * price);
+        let igv = subtotal * 0.18;
+        let total = subtotal + igv;
+        txtSubtotal.value = subtotal.toFixed(2);
+        txtIgv.value = igv.toFixed(2);
+        txtTotal.value = total.toFixed(2);
+      }
+    </script>
   </body>
 </html>

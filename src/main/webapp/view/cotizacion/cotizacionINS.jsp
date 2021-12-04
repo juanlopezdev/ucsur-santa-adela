@@ -140,5 +140,19 @@
       </div>
     </div>
 
+    <script>
+      let txtSubtotal = document.querySelector('input[name="subtotal"]');
+      let txtIgv = document.querySelector('input[name="igv"]');
+      let txtTotal = document.querySelector('input[name="total"]');
+
+      txtSubtotal.onkeyup = (evt) => {
+        let subtotal = parseFloat(txtSubtotal.value);
+        let igv = subtotal * 0.18;
+        let total = subtotal + igv;
+        txtIgv.value = igv.toFixed(2);
+        txtTotal.value = total.toFixed(2);
+      };
+
+    </script>
   </body>
 </html>

@@ -39,10 +39,10 @@
         <%-- Pantalla muestra nombres del usuario a Retirar (inicio) --%>
         <%
           String codigo = request.getParameter("cod_cliente");
-          Object[] fila = Sql.getFila("SELECT"
-                  + "cod_cliente,"
-                  + "ruc,"
-                  + "razon_social "
+          Object[] fila = Sql.getFila("SELECT "
+                  + " cod_cliente, "
+                  + " ruc, "
+                  + " razon_social "
                   + "FROM bdcmsa.cliente WHERE cod_cliente = " + codigo);
         %>
         <form action="../../Cliente" method="post">

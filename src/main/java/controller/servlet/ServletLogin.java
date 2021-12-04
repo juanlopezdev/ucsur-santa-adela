@@ -41,8 +41,8 @@ public class ServletLogin extends HttpServlet {
         }
 
       } else {
-//                msg = "Login Fallido... Datos NO VALIDOS";
-//                redirect = "mensaje.jsp";
+                msg = "Login Fallido... Datos NO VALIDOS";
+                redirect = "mensaje.jsp";
       }
 
     } else {
